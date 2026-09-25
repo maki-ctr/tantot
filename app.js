@@ -219,6 +219,7 @@ V.scenario = id => {
 };
 
 V.drills = () => `<h1>Exercices</h1><p class="muted">Targeted at the errors from your diagnostic. Weakest first.</p>
+  <div class="panel"><div class="spread"><div><div class="t">Les temps verbaux</div><div class="small muted">When and how to use each tense, with examples you can listen to.</div></div><a class="btn go" href="#/temps">Lire</a></div></div>
   <div class="panel list">${D.drills.map(d => { const a = drillAcc(d.id); return `
   <a class="item" href="#/exercices/${d.id}"><div class="spread"><span class="t">${esc(d.title)}</span><span class="small muted">${a.pct === null ? "Pas encore fait" : a.pct + " %"}</span></div>
   <div class="small muted">${esc(d.why)}</div>${a.pct !== null ? `<div class="bar"><i style="width:${a.pct}%"></i></div>` : ""}</a>`; }).join("")}</div>`;
@@ -311,12 +312,42 @@ V.settings = () => {
   </div>`;
 };
 
+V.tenses = () => `<p class="small"><a href="#/exercices">Exercices</a></p>
+  <h1>Les temps verbaux</h1>
+  <p class="muted">Six tenses cover almost everything a project manager says. Each page explains when to use the tense, how to form it, and the trap to watch for you.</p>
+  <h2>Quel temps choisir ?</h2>
+  <div class="panel tablewrap"><table class="conj"><tbody>${D.tenseChooser.map(([sit, t, ex]) => `<tr><td>${esc(sit)}</td><td><b>${esc(t)}</b></td><td class="fr">${esc(ex)}</td></tr>`).join("")}</tbody></table></div>
+  <h2>Les six temps</h2>
+  <div class="panel list">${D.tenses.map(t => `<a class="item" href="#/temps/${t.id}"><div class="t">${esc(t.name)}</div><div class="small muted">${esc(t.summary)}</div></a>`).join("")}</div>`;
+
+V.tense = id => {
+  const i = D.tenses.findIndex(x => x.id === id); if (i < 0) return V.notFound();
+  const t = D.tenses[i], prev = D.tenses[i - 1], next = D.tenses[i + 1];
+  const drill = t.drill && D.drills.find(d => d.id === t.drill);
+  return `<p class="small"><a href="#/temps">Les temps verbaux</a></p>
+  <h1>${esc(t.name)}</h1>
+  <p class="muted">${esc(t.summary)}</p>
+  <h2>Quand l'utiliser</h2>
+  <div class="panel">${t.uses.map(([when, fr, en]) => `
+    <div style="padding:8px 0;border-bottom:1px solid var(--line)"><div class="small muted">${esc(when)}</div>
+    <div class="row" style="flex-wrap:nowrap;align-items:flex-start;margin-top:4px"><button class="play" data-act="say" data-text="${esc(fr)}" aria-label="Écouter">${PLAY}</button>
+    <div><div class="fr">${esc(fr)}</div><div class="small muted">${esc(en)}</div></div></div></div>`).join("")}</div>
+  <h2>Comment le former</h2>
+  <div class="panel"><p>${esc(t.how)}</p>
+    <div class="tablewrap"><table class="conj"><thead><tr>${t.table.head.map(h => `<th>${esc(h)}</th>`).join("")}</tr></thead>
+    <tbody>${t.table.rows.map(r => `<tr>${r.map((c, j) => j ? `<td class="fr">${esc(c)}</td>` : `<td class="muted">${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>
+  ${t.contrast ? `<h2>Passé composé ou imparfait ?</h2><div class="panel"><p>${esc(t.contrast)}</p></div>` : ""}
+  <div class="turn"><div class="small muted">Attention, Malick</div><p style="margin:.3em 0 0">${esc(t.trap)}</p></div>
+  ${drill ? `<a class="btn go" href="#/exercices/${drill.id}">S'exercer : ${esc(drill.title)}</a>` : ""}
+  <div class="spread" style="margin-top:28px">${prev ? `<a class="btn" href="#/temps/${prev.id}">${esc(prev.name)}</a>` : "<span></span>"}${next ? `<a class="btn" href="#/temps/${next.id}">${esc(next.name)}</a>` : ""}</div>`;
+};
+
 V.notFound = () => `<h1>Page introuvable</h1><p><a href="#/">Retour à l'accueil</a></p>`;
 
 // ── Router ─────────────────────────────────────────
 function render() {
   const [, a = "", b = ""] = location.hash.replace(/^#/, "").split("/");
-  document.querySelectorAll("nav.tabs a").forEach(x => x.classList.toggle("on", x.dataset.tab === (a === "scenario" ? "scenarios" : a)));
+  document.querySelectorAll("nav.tabs a").forEach(x => x.classList.toggle("on", x.dataset.tab === (a === "scenario" ? "scenarios" : a === "temps" ? "exercices" : a)));
   const main = $("#main");
   const html =
     a === "" ? V.home() :
@@ -324,6 +355,7 @@ function render() {
     a === "scenario" ? V.scenario(b) :
     a === "exercices" ? (b ? V.drill(b) : V.drills()) :
     a === "vocabulaire" ? (b === "revision" ? V.review() : V.vocab()) :
+    a === "temps" ? (b ? V.tense(b) : V.tenses()) :
     a === "erreurs" ? V.errors() :
     a === "reglages" ? V.settings() : V.notFound();
   main.innerHTML = html;

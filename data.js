@@ -328,6 +328,142 @@ window.DATA = {
     }
   ],
 
+  tenses: [
+    {
+      id: "present", name: "Le présent", drill: null,
+      summary: "What is true now, what you do regularly, and what is happening right now.",
+      uses: [
+        ["Facts and current status", "Le projet avance bien.", "The project is going well."],
+        ["Habits and routines", "On fait un point tous les lundis.", "We do a check-in every Monday."],
+        ["Right now (French has no -ing form)", "Je prépare le rapport.", "I'm preparing the report."],
+        ["With « depuis »: started in the past, still true", "Je travaille chez Toyota depuis 2024.", "I have been working at Toyota since 2024."],
+        ["Near future, when the time is stated", "Je vous envoie le planning demain.", "I'll send you the schedule tomorrow."]
+      ],
+      how: "Regular -er verbs drop -er and add -e, -es, -e, -ons, -ez, -ent. The endings -e, -es, -ent all sound the same. The five most useful verbs are irregular: learn them by heart.",
+      table: { head: ["", "parler", "être", "avoir", "aller", "faire"], rows: [
+        ["je / j'", "parle", "suis", "ai", "vais", "fais"],
+        ["tu", "parles", "es", "as", "vas", "fais"],
+        ["il / elle / on", "parle", "est", "a", "va", "fait"],
+        ["nous", "parlons", "sommes", "avons", "allons", "faisons"],
+        ["vous", "parlez", "êtes", "avez", "allez", "faites"],
+        ["ils / elles", "parlent", "sont", "ont", "vont", "font"]
+      ]},
+      trap: "English says « I have been working since 2024 ». French uses the present: « je travaille depuis 2024 », never « j'ai travaillé depuis ». And never drop the verb: « je besoin » → « j'ai besoin »."
+    },
+    {
+      id: "passe-compose", name: "Le passé composé", drill: "etre-avoir",
+      summary: "Completed actions and events: what happened, what you did.",
+      uses: [
+        ["A finished action at a specific moment", "Hier, j'ai envoyé le rapport au sponsor.", "Yesterday, I sent the report to the sponsor."],
+        ["A sequence of events", "J'ai analysé l'impact, puis j'ai proposé deux options.", "I analysed the impact, then proposed two options."],
+        ["An event that explains the current situation", "Le fournisseur a rencontré un problème de sécurité.", "The supplier ran into a security issue."],
+        ["Your actions in a STAR answer", "J'ai rédigé des exigences claires et j'ai testé chaque version.", "I wrote clear requirements and tested each version."]
+      ],
+      how: "Avoir or être in the present + past participle. Participles: -er → -é (envoyé), -ir → -i (fini), and irregular ones to learn: fait, pris, mis, dit, vu, eu, été, pu, voulu, dû, venu. Most verbs take avoir. Être is used with movement and change-of-state verbs (aller, venir, arriver, partir, entrer, sortir, rester, tomber, devenir, retourner, naître, mourir) and with all reflexive verbs (je me suis trompé). With être, the participle agrees like an adjective: elle est partie, ils sont venus.",
+      table: { head: ["", "envoyer (avoir)", "aller (être)"], rows: [
+        ["je / j'", "ai envoyé", "suis allé(e)"],
+        ["tu", "as envoyé", "es allé(e)"],
+        ["il / elle", "a envoyé", "est allé / est allée"],
+        ["nous", "avons envoyé", "sommes allé(e)s"],
+        ["vous", "avez envoyé", "êtes allé(e)(s)"],
+        ["ils / elles", "ont envoyé", "sont allés / sont allées"]
+      ]},
+      trap: "From your diagnostic: « j'ai entré » → « je suis entré » (movement verb). « à été retardé » → « a été retardé »: « a » is the verb avoir, « à » is a preposition."
+    },
+    {
+      id: "imparfait", name: "L'imparfait", drill: "imparfait",
+      summary: "The background: how things were, what was going on, what used to happen.",
+      uses: [
+        ["Context and description", "Le client était mécontent et le budget était serré.", "The client was unhappy and the budget was tight."],
+        ["Past habits (« used to »)", "Chez OLX, je travaillais avec des équipes en Angola.", "At OLX, I used to work with teams in Angola."],
+        ["An action in progress when something happened", "Je préparais le COPIL quand Dirk a appelé.", "I was preparing the steering committee when Dirk called."],
+        ["Feelings, weather, age, time", "Il faisait beau et tout le monde était content.", "The weather was nice and everyone was happy."],
+        ["Polite softening", "Je voulais vous demander votre avis.", "I wanted to ask your opinion."]
+      ],
+      how: "Take the « nous » form of the present, remove -ons, and add -ais, -ais, -ait, -ions, -iez, -aient. So nous faisons → je faisais, nous prenons → je prenais. Only one exception: être → j'étais.",
+      table: { head: ["", "travailler", "faire", "être"], rows: [
+        ["je / j'", "travaillais", "faisais", "étais"],
+        ["tu", "travaillais", "faisais", "étais"],
+        ["il / elle", "travaillait", "faisait", "était"],
+        ["nous", "travaillions", "faisions", "étions"],
+        ["vous", "travailliez", "faisiez", "étiez"],
+        ["ils / elles", "travaillaient", "faisaient", "étaient"]
+      ]},
+      contrast: "Passé composé or imparfait? Think of a film: the imparfait is the scenery, the passé composé is the action. « Nous préparions le lancement (scenery) quand le régulateur a changé les règles (action). » Quick test: if English would say « was ...ing » or « used to », use the imparfait. If it happened once and finished, use the passé composé.",
+      trap: "From your diagnostic: « quand j'étais jeune, je jouais au football », not « je suis… j'ai joué ». Also, -ais, -ait and -aient all sound the same, so when speaking only the subject tells them apart."
+    },
+    {
+      id: "futur-proche", name: "Le futur proche", drill: null,
+      summary: "Plans and things about to happen. The easiest future and the most common when speaking.",
+      uses: [
+        ["Something you plan to do soon", "Je vais relancer l'équipe sécurité cet après-midi.", "I'm going to chase the security team this afternoon."],
+        ["Something clearly about to happen", "On va dépasser le budget si on ne réagit pas.", "We're going to go over budget if we don't act."],
+        ["Next steps in a stand-up", "La semaine prochaine, je vais organiser l'atelier.", "Next week, I'm going to organise the workshop."]
+      ],
+      how: "Aller in the present + infinitive. In the negative, « ne… pas » goes around aller: « je ne vais pas changer la date ».",
+      table: { head: ["", "aller", "+ infinitif"], rows: [
+        ["je", "vais", "préparer"],
+        ["tu", "vas", "préparer"],
+        ["il / elle", "va", "préparer"],
+        ["nous", "allons", "préparer"],
+        ["vous", "allez", "préparer"],
+        ["ils / elles", "vont", "préparer"]
+      ]},
+      trap: "No « à » or « de » after aller: « je vais à préparer » is wrong. Portuguese works the same way (vou preparar), so this one should be easy for you."
+    },
+    {
+      id: "futur-simple", name: "Le futur simple", drill: null,
+      summary: "Commitments, formal promises and written plans. More formal than the futur proche.",
+      uses: [
+        ["Formal commitments in emails and meetings", "Vous aurez le rapport mercredi.", "You will have the report on Wednesday."],
+        ["Planning documents", "La mise en production aura lieu le 12 octobre.", "Go-live will take place on 12 October."],
+        ["After « quand » about the future", "Quand le fournisseur sera prêt, nous reprendrons les tests.", "When the supplier is ready, we will resume testing."],
+        ["« Si » + present, then future", "Si le COPIL valide, nous commencerons lundi.", "If the steering committee approves, we'll start on Monday."]
+      ],
+      how: "Infinitive + -ai, -as, -a, -ons, -ez, -ont. Verbs ending in -re drop the final e: prendre → je prendrai. Irregular stems to learn: être → ser-, avoir → aur-, aller → ir-, faire → fer-, pouvoir → pourr-, vouloir → voudr-, devoir → devr-, venir → viendr-, voir → verr-, envoyer → enverr-, savoir → saur-.",
+      table: { head: ["", "envoyer", "être", "avoir"], rows: [
+        ["je / j'", "enverrai", "serai", "aurai"],
+        ["tu", "enverras", "seras", "auras"],
+        ["il / elle", "enverra", "sera", "aura"],
+        ["nous", "enverrons", "serons", "aurons"],
+        ["vous", "enverrez", "serez", "aurez"],
+        ["ils / elles", "enverront", "seront", "auront"]
+      ]},
+      trap: "After « quand » about the future, French uses the future: « quand je serai chef de projet », not « quand je suis ». Portuguese uses the future subjunctive here (quando eu for), so it will feel strange at first."
+    },
+    {
+      id: "conditionnel", name: "Le conditionnel", drill: null,
+      summary: "Politeness, options and hypotheses. The PM's most useful tense in meetings and emails.",
+      uses: [
+        ["Polite requests", "Pourriez-vous valider le planning d'ici mercredi ?", "Could you approve the schedule by Wednesday?"],
+        ["Softened wishes", "Je voudrais faire le point sur le budget.", "I'd like to review the budget."],
+        ["Suggesting options", "On pourrait reporter deux fonctionnalités.", "We could postpone two features."],
+        ["Advice", "Vous devriez prévenir le sponsor aujourd'hui.", "You should inform the sponsor today."],
+        ["Hypotheses: « si » + imparfait, then conditionnel", "Si nous avions plus de ressources, nous finirions en huit semaines.", "If we had more resources, we would finish in eight weeks."]
+      ],
+      how: "Futur simple stem + imparfait endings (-ais, -ais, -ait, -ions, -iez, -aient). pouvoir → pourr- → je pourrais. If you know the futur simple stem, you already know the conditionnel.",
+      table: { head: ["", "pouvoir", "vouloir", "devoir"], rows: [
+        ["je", "pourrais", "voudrais", "devrais"],
+        ["tu", "pourrais", "voudrais", "devrais"],
+        ["il / elle", "pourrait", "voudrait", "devrait"],
+        ["nous", "pourrions", "voudrions", "devrions"],
+        ["vous", "pourriez", "voudriez", "devriez"],
+        ["ils / elles", "pourraient", "voudraient", "devraient"]
+      ]},
+      trap: "Never use the conditionnel right after « si »: « si j'aurais le temps » → « si j'avais le temps ». And the stem keeps the infinitive: apprendre → j'apprendrais (you wrote « apprenderais » in the diagnostic)."
+    }
+  ],
+
+  // Quick chooser shown on the tenses page: [situation, tense, example]
+  tenseChooser: [
+    ["Current status, routine, « depuis »", "présent", "On attend les accès depuis mardi."],
+    ["Something that happened and finished", "passé composé", "J'ai envoyé le rapport."],
+    ["Background, habits, « was ...ing »", "imparfait", "Nous préparions le lancement."],
+    ["Your plan, spoken", "futur proche", "Je vais relancer le fournisseur."],
+    ["A commitment, written or formal", "futur simple", "Vous l'aurez mercredi."],
+    ["A polite request or an option", "conditionnel", "Pourriez-vous valider ?"]
+  ],
+
   drills: [
     { id: "etre-avoir", title: "Être ou avoir ?", why: "Your most frequent error: movement verbs take être.", items: [
       { q: "Hier, je ___ arrivé en retard.", options: ["suis", "ai"], a: "suis", ex: "arriver is a movement verb → être." },
